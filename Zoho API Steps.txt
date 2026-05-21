@@ -1,0 +1,249 @@
+
+
+
+1.Run this url in browser:
+	https://accounts.zoho.in/oauth/v2/auth?scope=zohobackstage.event.READ,zohobackstage.attendee.READ&client_id=1000.IX7R9PVBNFLQ0C9E9NWJUCXG5TT1ZX&response_type=code&access_type=online&redirect_uri=https://pi-india.in/
+2.After you can get below response like this. use the code to parameter for get access token.
+	https://pi-india.in/?code=1000.c03ac601fefe3230c2c2e7c94c9f693c.1cb2ec6b4bf85d8a1097e82c5d610aee&location=in&accounts-server=https:%2F%2Faccounts.zoho.in
+
+
+
+simbu@sisesoft.com/Kiruba@50
+
+
+manisha.mali@anekalabs.com
+QPYJKRR36L0Y6G8PQY6WAGONDA1W5N
+
+
+scecreat code = b4f5085ed4a093ae3a4a33bdac4531be99391266fc
+
+
+portal/60028827334
+https://backstage.zoho.in/home#/portal/60028827334/brand/18344000000002010/event/18344000000051621/tickets/setup/ticket-class
+
+
+	1000.c03ac601fefe3230c2c2e7c94c9f693c.1cb2ec6b4bf85d8a1097e82c5d610aee
+	client id: 1000.IX7R9PVBNFLQ0C9E9NWJUCXG5TT1ZX
+client sectret: b4f5085ed4a093ae3a4a33bdac4531be99391266fc
+
+Step 1: Get access token
+URL: https://accounts.zoho.in/oauth/v2/token
+Type: post
+Parameters:
+	code:1000.c03ac601fefe3230c2c2e7c94c9f693c.1cb2ec6b4bf85d8a1097e82c5d610aee
+	client_id:1000.IX7R9PVBNFLQ0C9E9NWJUCXG5TT1ZX
+	client_secret:b4f5085ed4a093ae3a4a33bdac4531be99391266fc
+	redirect_uri:https://pi-india.in/
+	grant_type:authorization_code
+
+response:
+	{
+    		"access_token": "1000.c3597af531840da6d06e1e1bca620161.d3aad3a25b10ec563c7f5ff302911660",
+    		"scope": "zohobackstage.event.READ zohobackstage.attendee.READ",
+    		"api_domain": "https://www.zohoapis.in",
+    		"token_type": "Bearer",
+    		"expires_in": 3600
+	}	
+
+Step 2: Get Event details
+URL: https://zohoapis.in/backstage/v3/portals/60028827334/events
+Type: get
+Parameters(in headers):
+	Authorization:Bearer 1000.c3597af531840da6d06e1e1bca620161.d3aad3a25b10ec563c7f5ff302911660
+
+response:
+	{
+    "pagination": {
+        "total_count": 1,
+        "page": 1,
+        "per_page": 50,
+        "total_pages": 1,
+        "has_more_items": false
+    },
+    "events": [
+        {
+            "id": "18344000000051621",
+            "space": {
+                "id": "18344000000002010"
+            },
+            "timezone": "Asia/Calcutta",
+            "status": 1,
+            "category": "OTHERS",
+            "language": "en",
+            "name": "testapi",
+            "description": "",
+            "summary": "",
+            "created_by": {
+                "id": "18344000000002001",
+                "first_name": "Silambarasan",
+                "last_name": "R",
+                "company": null,
+                "designation": null,
+                "telephone": "09994065173"
+            },
+            "created_time": "2024-05-23T09:45:22Z",
+            "last_modified_by": {
+                "id": "18344000000002001",
+                "first_name": "Silambarasan",
+                "last_name": "R",
+                "company": null,
+                "designation": null,
+                "telephone": "09994065173"
+            },
+            "last_modified_time": "2024-05-23T09:47:01Z",
+            "event_type": 2,
+            "start_time": "2024-07-31T02:30:00Z",
+            "end_time": "2024-07-31T11:30:59Z",
+            "website_url": "https://sisesoft.zohobackstage.in/testapi"
+        }
+    ]
+}
+
+Step 3: Get attendees deatails
+URL: https://zohoapis.in/backstage/v3/portals/60028827334/events/18344000000051621/attendees
+Type: get
+Parameters(in headers):
+	Authorization:Bearer 1000.c3597af531840da6d06e1e1bca620161.d3aad3a25b10ec563c7f5ff302911660
+
+Response:
+	{
+    "pagination": {
+        "total_count": 0,
+        "page": 1,
+        "per_page": 100,
+        "total_pages": 1,
+        "has_more_items": false
+    },
+    "attendees": []
+}
+=================================
+https://zohoapis.in/backstage/v3/portals/60028827334/events/18344000000051621/attendees
+
+{
+    "pagination": {
+        "total_count": 1,
+        "page": 1,
+        "per_page": 100,
+        "total_pages": 1,
+        "has_more_items": false
+    },
+    "attendees": [
+        {
+            "id": "18344000000098506",
+            "portal": "60028827334",
+            "event_id": "18344000000051621",
+            "order_id": "18344000000098503",
+            "ticket_id": "183440000000985031",
+            "ticket_name": "Silver",
+            "purchased_by": "manishamali64@gmail.com",
+            "status": 1,
+            "affiliate_name": null,
+            "promo_code": null,
+            "contact": {
+                "first_name": "Manisha",
+                "last_name": "M",
+                "email": "manishamali64@gmail.com",
+                "mobile_no": "9921572275"
+            },
+            "created_time": "2024-05-27T05:51:57Z",
+            "last_modified_time": "2024-05-27T05:51:57Z"
+        }
+    ]
+}
+
+
+https://help.zoho.com/portal/en/community/topic/curl-php-how-to-get-a-deals-contact-roles
+
+https://help.zoho.com/portal/en/community/topic/invalid-oauth-token-9-5-2019
+
+
+Step 1: Get access token
+URL: https://accounts.zoho.in/oauth/v2/token
+Type: post
+Parameters:
+	code:1000.c03ac601fefe3230c2c2e7c94c9f693c.1cb2ec6b4bf85d8a1097e82c5d610aee
+	client_id:1000.IX7R9PVBNFLQ0C9E9NWJUCXG5TT1ZX
+	client_secret:b4f5085ed4a093ae3a4a33bdac4531be99391266fc
+	redirect_uri:https://pi-india.in/
+	grant_type:authorization_code
+
+response:
+	{
+    		"access_token": "1000.c3597af531840da6d06e1e1bca620161.d3aad3a25b10ec563c7f5ff302911660",
+    		"scope": "zohobackstage.event.READ zohobackstage.attendee.READ",
+    		"api_domain": "https://www.zohoapis.in",
+    		"token_type": "Bearer",
+    		"expires_in": 3600
+	}	
+
+Step 2: Get Event details
+URL: https://zohoapis.in/backstage/v3/portals/60028827334/events
+Type: get
+Parameters(in headers):
+	Authorization:Bearer 1000.c3597af531840da6d06e1e1bca620161.d3aad3a25b10ec563c7f5ff302911660
+
+response:
+	{
+    "pagination": {
+        "total_count": 1,
+        "page": 1,
+        "per_page": 50,
+        "total_pages": 1,
+        "has_more_items": false
+    },
+    "events": [
+        {
+            "id": "18344000000051621",
+            "space": {
+                "id": "18344000000002010"
+            },
+            "timezone": "Asia/Calcutta",
+            "status": 1,
+            "category": "OTHERS",
+            "language": "en",
+            "name": "testapi",
+            "description": "",
+            "summary": "",
+            "created_by": {
+                "id": "18344000000002001",
+                "first_name": "Silambarasan",
+                "last_name": "R",
+                "company": null,
+                "designation": null,
+                "telephone": "09994065173"
+            },
+            "created_time": "2024-05-23T09:45:22Z",
+            "last_modified_by": {
+                "id": "18344000000002001",
+                "first_name": "Silambarasan",
+                "last_name": "R",
+                "company": null,
+                "designation": null,
+                "telephone": "09994065173"
+            },
+            "last_modified_time": "2024-05-23T09:47:01Z",
+            "event_type": 2,
+            "start_time": "2024-07-31T02:30:00Z",
+            "end_time": "2024-07-31T11:30:59Z",
+            "website_url": "https://sisesoft.zohobackstage.in/testapi"
+        }
+    ]
+}
+
+Step 3: Get attendees deatails
+URL: https://zohoapis.in/backstage/v3/portals/60028827334/events/18344000000051621/attendees
+Type: get
+Parameters(in headers):
+	Authorization:Bearer 1000.c3597af531840da6d06e1e1bca620161.d3aad3a25b10ec563c7f5ff302911660
+
+Response:
+	{
+    "pagination": {
+        "total_count": 0,
+        "page": 1,
+        "per_page": 100,
+        "total_pages": 1,
+        "has_more_items": false
+    },
+    "attendees": []
+}
